@@ -35,16 +35,55 @@ GraphicDisplay::~GraphicDisplay()
 	return ;
 }
 
-void					GraphicDisplay::fillSpace(char *str)
+void					GraphicDisplay::graphCPU(int i)
 {
-	(void)str;
-	// while (this->_size < this->_col)
-	// {
-	// 	mvprintw(this->_x, this->_size, str);
-	// 	this->_size = this->_size + 1;
-	// }
-	// this->_x = this->_x + 1;
-	// this->_size = -1;
+	sf::Text	t1;
+	t1.setFillColor(this->_lightblue);
+	t1.setCharacterSize(30);
+	t1.setFont(this->_courier);
+	t1.setStyle(sf::Text::Bold);
+
+	std::string con1 = this->_modules.at(i)->getOutput().at(0);
+	std::string con2 = this->_modules.at(i)->getOutput().at(1);
+	std::string con3 = this->_modules.at(i)->getOutput().at(2);
+
+	con1 = con1.substr(con1.find_first_of("0123456789"), con1.find("%"));
+	con2 = con2.substr(con2.find_first_of("0123456789"), con1.find("%"));
+	con3 = con3.substr(con3.find_first_of("0123456789"), con1.find("%"));
+
+	float a = stof(con1);
+	float b = stof(con2);
+	float c = stof(con3);
+
+	sf::RectangleShape c1(sf::Vector2f(400 * (a / 100), 50));
+	sf::RectangleShape c2(sf::Vector2f(400 * (b / 100), 50));
+	sf::RectangleShape c3(sf::Vector2f(400 * (c / 100), 50));
+
+	c1.setFillColor(sf::Color::Red);
+	c2.setFillColor(sf::Color::Green);
+	c3.setFillColor(sf::Color::Yellow);
+
+	c1.setPosition(90, this->_size + 20);
+	c2.setPosition(90, this->_size + 90);
+	c3.setPosition(90, this->_size + 160);
+
+	this->_window.draw(c1);
+	this->_window.draw(c2);
+	this->_window.draw(c3);
+
+	t1.setString("User");
+	t1.setPosition(10, this->_size + 20);
+	this->_window.draw(t1);
+
+	t1.setString("Syst");
+	t1.setPosition(10, this->_size + 90);
+	this->_window.draw(t1);
+
+	t1.setString("Idle");
+	t1.setPosition(10, this->_size + 160);
+	this->_window.draw(t1);
+
+	(void)i;
 }
 
 void					GraphicDisplay::renderOutput(void)
@@ -73,6 +112,7 @@ void					GraphicDisplay::renderOutput(void)
 
 	size_t i = 0;
 	size_t x = 0;
+	int	   y = 0;
 	
 	r1.setFillColor(this->_grey);
 	t1.setFillColor(this->_lightblue);
@@ -92,14 +132,20 @@ void					GraphicDisplay::renderOutput(void)
 		r2.setPosition(0, this->_size);
 		this->_window.draw(r2);
 		t1.setCharacterSize(40);
-		while (x < (this->_modules.at(i)->getOutput().size()))
+		y = (125 / this->_modules.at(i)->getOutput().size());
+		if (this->_modules.at(i)->getName() == " CPU USAGE ")
+			graphCPU(i);
+		else
 		{
-			t1.setString(this->_modules.at(i)->getOutput().at(x).c_str());
-			tr = t1.getLocalBounds();
-			t1.setOrigin(tr.left + tr.width/2.0f, 0);
-			t1.setPosition(300, this->_size + (x * 50));
-			this->_window.draw(t1);
-			x++;
+			while (x < (this->_modules.at(i)->getOutput().size()))
+			{
+				t1.setString(this->_modules.at(i)->getOutput().at(x).c_str());
+				tr = t1.getLocalBounds();
+				t1.setOrigin(tr.left + tr.width/2.0f, 0);
+				t1.setPosition(300, this->_size + y + (x * 50));
+				this->_window.draw(t1);
+				x++;
+			}
 		}
 		t1.setCharacterSize(50);
 		this->_size = this->_size + 250;

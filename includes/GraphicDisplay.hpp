@@ -25,7 +25,8 @@ class GraphicDisplay : public IMonitorDisplay
 		
 		void		renderOutput(void);
 		void		refreshOutput(void);
-		void		fillSpace(char *str);
+
+		void		graphCPU(int i);
 
 	private:
 
@@ -35,19 +36,19 @@ class GraphicDisplay : public IMonitorDisplay
 
 		std::vector<IMonitorModule*>	_modules;
 
-		sf::RenderWindow	&_window;
+		sf::RenderWindow				&_window;
 
-		sf::Font	_arial;
-		sf::Font	_trebuchet;
-		sf::Font	_courier;
+		sf::Font						_arial;
+		sf::Font						_trebuchet;
+		sf::Font						_courier;
 
-		sf::Color	_grey;
-		sf::Color	_lightgrey;
-		sf::Color	_slateblue;
-		sf::Color	_azure;
-		sf::Color	_lightblue;
+		sf::Color						_grey;
+		sf::Color						_lightgrey;
+		sf::Color						_slateblue;
+		sf::Color						_azure;
+		sf::Color						_lightblue;
 
-		int			_size;
+		int								_size;
 };
 
 #endif
