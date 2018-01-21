@@ -20,7 +20,7 @@ class GraphicDisplay : public IMonitorDisplay
 {
 	public:
 
-		GraphicDisplay(std::vector<IMonitorModule*> const modules);
+		GraphicDisplay(std::vector<IMonitorModule*> const modules, sf::RenderWindow	&window);
 		virtual ~GraphicDisplay(void);
 		
 		void		renderOutput(void);
@@ -34,6 +34,20 @@ class GraphicDisplay : public IMonitorDisplay
 		GraphicDisplay	&operator=(GraphicDisplay const &r);
 
 		std::vector<IMonitorModule*>	_modules;
+
+		sf::RenderWindow	&_window;
+
+		sf::Font	_arial;
+		sf::Font	_trebuchet;
+		sf::Font	_courier;
+
+		sf::Color	_grey;
+		sf::Color	_lightgrey;
+		sf::Color	_slateblue;
+		sf::Color	_azure;
+		sf::Color	_lightblue;
+
+		int			_size;
 };
 
 #endif
