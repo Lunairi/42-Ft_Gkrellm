@@ -8,7 +8,7 @@
  This repo has SFML for the graphic library. To run this, use 'make sfml' and it will echo you a command you must run in the terminal.
  Other necessary files and stuff are included as well.
   
- This project was part of a weekend rush challenge from the CPP Piscine at 42. This is the second and final rush challenge.
+ This project was part of a weekend rush challenge from the CPP Piscine at 42. This is the second and final rush challenge. You can see my CPP Piscine work here: https://github.com/Lunairi/42-Piscine_CPP
  
   __Group Project Members__
  - Sam Collet - https://github.com/scollet1
