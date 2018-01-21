@@ -18,10 +18,11 @@
 SRC = main.cpp TextDisplay.cpp ImageDisplay.cpp
 
 SRC_CLASS = HostNameModule.cpp OSInfoModule.cpp DateTimeModule.cpp \
-			CPUInfoModule.cpp ProcessInfoModule.cpp CPUUsageModule.cpp \
+			CPUInfoModule.cpp CPUUsageModule.cpp \
 			RAMUsageModule.cpp NetworkInfoModule.cpp \
 			TerminalDisplay.cpp GraphicDisplay.cpp \
-			IMonitorModule.cpp IMonitorDisplay.cpp
+			IMonitorModule.cpp IMonitorDisplay.cpp \
+			PonyModule.cpp
 
 OBJ = $(SRC:.cpp=.o)
 OBJ_CLASS = $(SRC_CLASS:.cpp=.o)

@@ -48,12 +48,12 @@
 # include <OSInfoModule.hpp>
 # include <DateTimeModule.hpp>
 # include <CPUInfoModule.hpp>
-# include <ProcessInfoModule.hpp>
 # include <CPUUsageModule.hpp>
 # include <RAMUsageModule.hpp>
 # include <NetworkInfoModule.hpp>
 # include <TerminalDisplay.hpp>
 # include <GraphicDisplay.hpp>
+# include <PonyModule.hpp>
 
 void	text_display(std::vector<std::string> flags);
 void	image_display(std::vector<std::string> flags);

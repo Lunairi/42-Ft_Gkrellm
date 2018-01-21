@@ -15,9 +15,8 @@
 void	image_display(std::vector<std::string> flags)
 {
 	std::vector<IMonitorModule*> 	modules;
-	// int								c = 0;
 
-	int		input[] = { 0, 0, 0, 0, 0, 0, 0 };
+	int		input[] = { 0, 0, 0, 0, 0, 0, 0, 0};
 
 	if (flags.size() == 0)
 	{
@@ -28,6 +27,7 @@ void	image_display(std::vector<std::string> flags)
 		modules.push_back(new CPUUsageModule(" CPU USAGE "));
 		modules.push_back(new RAMUsageModule(" RAM USAGE "));
 		modules.push_back(new NetworkInfoModule(" NETWORK INFO "));
+		modules.push_back(new PonyModule(" MAGICAL PONY "));
 	}
 	else
 	{
@@ -69,6 +69,11 @@ void	image_display(std::vector<std::string> flags)
 			{
 				input[6] = 1;
 				modules.push_back(new NetworkInfoModule(" NETWORK INFO "));
+			}
+			else if (flags.at(i) == "-p" && input[7] == 0)
+			{
+				input[7] = 1;
+				modules.push_back(new PonyModule(" MAGICAL PONY "));
 			}
 			i++;
 		}

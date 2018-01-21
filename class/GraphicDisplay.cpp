@@ -26,6 +26,8 @@ GraphicDisplay::GraphicDisplay(std::vector<IMonitorModule*> const modules, sf::R
 	this->_azure.r = 51; this->_azure.g = 153; this->_azure.b = 255;
 	this->_lightblue.r = 153; this->_lightblue.g = 204; this->_lightblue.b = 255;
 
+	this->_pony = -250;
+
 	return ;
 }
 
@@ -35,10 +37,58 @@ GraphicDisplay::~GraphicDisplay()
 	return ;
 }
 
+void					GraphicDisplay::drawPony(int i)
+{
+	int cc = rand();
+
+	sf::Text	t1;
+	if (cc % 5 == 0)
+		t1.setFillColor(sf::Color::Black);
+	else if (cc % 5 == 1)
+		t1.setFillColor(sf::Color::Red);
+	else if (cc % 5 == 2)
+		t1.setFillColor(sf::Color::Green);
+	else if (cc % 5 == 3)
+		t1.setFillColor(sf::Color::Cyan);
+	else
+		t1.setFillColor(sf::Color::Yellow);
+	t1.setCharacterSize(20);
+	t1.setFont(this->_courier);
+	t1.setStyle(sf::Text::Bold);
+
+	t1.setString(this->_modules.at(i)->getOutput().at(0));
+	t1.setPosition(this->_pony, this->_size + 10);
+	this->_window.draw(t1);
+
+	t1.setString(this->_modules.at(i)->getOutput().at(1));
+	t1.setPosition(this->_pony, this->_size + 50);
+	this->_window.draw(t1);
+
+	t1.setString(this->_modules.at(i)->getOutput().at(2));
+	t1.setPosition(this->_pony, this->_size + 90);
+	this->_window.draw(t1);
+
+	t1.setString(this->_modules.at(i)->getOutput().at(3));
+	t1.setPosition(this->_pony, this->_size + 130);
+	this->_window.draw(t1);
+
+	t1.setString(this->_modules.at(i)->getOutput().at(4));
+	t1.setPosition(this->_pony, this->_size + 170);
+	this->_window.draw(t1);
+
+	t1.setString(this->_modules.at(i)->getOutput().at(5));
+	t1.setPosition(this->_pony, this->_size + 210);
+	this->_window.draw(t1);
+
+	this->_pony = this->_pony + 10;
+	if (this->_pony > 600)
+		this->_pony = -250;
+}
+
 void					GraphicDisplay::graphCPU(int i)
 {
 	sf::Text	t1;
-	t1.setFillColor(this->_lightblue);
+	t1.setFillColor(sf::Color::Black);
 	t1.setCharacterSize(30);
 	t1.setFont(this->_courier);
 	t1.setStyle(sf::Text::Bold);
@@ -140,11 +190,13 @@ void					GraphicDisplay::renderOutput(void)
 
 		r2.setPosition(0, this->_size);
 		this->_window.draw(r2);
-		t1.setCharacterSize(40);
+		t1.setCharacterSize(35);
 		y = (125 / this->_modules.at(i)->getOutput().size());
 		t1.setFillColor(sf::Color::Black);
 		if (this->_modules.at(i)->getName() == " CPU USAGE ")
 			graphCPU(i);
+		else if (this->_modules.at(i)->getName() == " MAGICAL PONY ")
+			drawPony(i);
 		else
 		{
 			while (x < (this->_modules.at(i)->getOutput().size()))

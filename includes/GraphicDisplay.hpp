@@ -27,6 +27,7 @@ class GraphicDisplay : public IMonitorDisplay
 		void		refreshOutput(void);
 
 		void		graphCPU(int i);
+		void		drawPony(int i);
 
 	private:
 
@@ -49,6 +50,7 @@ class GraphicDisplay : public IMonitorDisplay
 		sf::Color						_lightblue;
 
 		int								_size;
+		int								_pony;
 };
 
 #endif

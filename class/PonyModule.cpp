@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    ProcessInfoModule.hpp  _             _              :::      ::::::::   */
+/*    PonyModule.cpp         _             _              :::      ::::::::   */
 /*    By: mlu               | |           | |           :+:      :+:    :+:   */
 /*     ___  __ _  __ _ _ __ | | __ _ _ __ | |_        +:+ +:+         +:+     */
 /*    / _ \/ _` |/ _` | '_ \| |/ _` | '_ \| __|     +/+  +:+       +/+        */
@@ -10,32 +10,37 @@
 /*         |___/ |___/|_|                                                     */
 /* ************************************************************************** */
 
+#include <Gkrellm.hpp>
 
-#ifndef PROCESSINFOMODULE_HPP
-# define PROCESSINFOMODULE_HPP
-
-# include <Gkrellm.hpp>
-
-class ProcessInfoModule : public IMonitorModule
+PonyModule::PonyModule(std::string const name) : IMonitorModule(), _output(), _name(name)
 {
-	public:
-
-		ProcessInfoModule(std::string const name);
-		virtual ~ProcessInfoModule(void);
-		
-		void							tick(void);
-		std::vector<std::string> const	&getOutput(void) const;
-		std::string const				&getName(void) const;
-		
-	private:
-
-		ProcessInfoModule(void);
-		ProcessInfoModule(ProcessInfoModule const &obj);
-		ProcessInfoModule	&operator=(ProcessInfoModule const &r);
-
-		std::vector<std::string>		_output;
-		std::string						_name;
 	
-};
+	this->_output.push_back("             .'' ");
+	this->_output.push_back("   ._.-.___.' (`\\ ");
+	this->_output.push_back("  //(        ( `' ");
+	this->_output.push_back(" '/ )\\ ).__. ) ");
+	this->_output.push_back(" ' <' `\\ ._/'\\ ");
+	this->_output.push_back("    `   \\     \\ ");
 
-#endif
+	return ;
+}
+
+PonyModule::~PonyModule()
+{
+	return ;
+}
+
+std::vector<std::string> const		&PonyModule::getOutput(void) const
+{
+	return (this->_output);
+}
+
+std::string const					&PonyModule::getName(void) const
+{
+	return (this->_name);
+}
+
+void								PonyModule::tick(void)
+{
+	return ;
+}

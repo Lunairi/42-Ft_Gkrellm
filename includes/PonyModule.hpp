@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    IMonitorDisplay.hpp     _             _              :::      ::::::::   */
+/*    PonyModule.hpp         _             _              :::      ::::::::   */
 /*    By: mlu               | |           | |           :+:      :+:    :+:   */
 /*     ___  __ _  __ _ _ __ | | __ _ _ __ | |_        +:+ +:+         +:+     */
 /*    / _ \/ _` |/ _` | '_ \| |/ _` | '_ \| __|     +/+  +:+       +/+        */
@@ -10,26 +10,31 @@
 /*         |___/ |___/|_|                                                     */
 /* ************************************************************************** */
 
-#ifndef IMONITORDISPLAY_HPP
-# define IMONITORDISPLAY_HPP
+#ifndef PONYMODULE_HPP
+# define PONYMODULE_HPP
 
 # include <Gkrellm.hpp>
 
-class IMonitorDisplay
+class PonyModule : public IMonitorModule
 {
 	public:
 
-		IMonitorDisplay(void);
-		virtual ~IMonitorDisplay(void);
-
-		virtual void		refreshOutput(void) = 0;
-		virtual void		renderOutput(void) = 0;
-		virtual void		drawPony(int i) = 0;
+		PonyModule(std::string const name);
+		virtual ~PonyModule(void);
+		
+		void							tick(void);
+		std::vector<std::string> const	&getOutput(void) const;
+		std::string const				&getName(void) const;
 		
 	private:
 
-		IMonitorDisplay(IMonitorDisplay const &obj);
-		IMonitorDisplay	&operator=(IMonitorDisplay const &r);
+		PonyModule(void);
+		PonyModule(PonyModule const &obj);
+		PonyModule	&operator=(PonyModule const &r);
+
+		std::vector<std::string>		_output;
+		std::string						_name;
+	
 };
 
 #endif
