@@ -19,8 +19,8 @@ class IMonitorDisplay
 {
 	public:
 
-		IMonitorDisplay(void) {}
-		virtual ~IMonitorDisplay(void) {}
+		IMonitorDisplay(void);
+		virtual ~IMonitorDisplay(void);
 
 		virtual void		refreshOutput(void) = 0;
 		virtual void		renderOutput(void) = 0;

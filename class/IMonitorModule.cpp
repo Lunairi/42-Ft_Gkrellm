@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    IMonitorModule.hpp     _             _              :::      ::::::::   */
+/*    IMonitorModule.cpp     _             _              :::      ::::::::   */
 /*    By: mlu               | |           | |           :+:      :+:    :+:   */
 /*     ___  __ _  __ _ _ __ | | __ _ _ __ | |_        +:+ +:+         +:+     */
 /*    / _ \/ _` |/ _` | '_ \| |/ _` | '_ \| __|     +/+  +:+       +/+        */
@@ -10,26 +10,14 @@
 /*         |___/ |___/|_|                                                     */
 /* ************************************************************************** */
 
-#ifndef IMONITORMODULE_HPP
-# define IMONITORMODULE_HPP
+#include <Gkrellm.hpp>
 
-# include <Gkrellm.hpp>
-
-class IMonitorModule
+IMonitorModule::IMonitorModule(void)
 {
-	public:
+	return;
+}
 
-		IMonitorModule(void);
-		virtual ~IMonitorModule(void);
-
-		virtual void							tick(void) = 0;
-		virtual std::vector<std::string> const	&getOutput(void) const = 0;
-		virtual std::string const				&getName(void) const = 0;
-		
-	private:
-
-		IMonitorModule(IMonitorModule const &obj);
-		IMonitorModule	&operator=(IMonitorModule const &r);
-};
-
-#endif
+IMonitorModule::~IMonitorModule(void)
+{
+	return;
+}

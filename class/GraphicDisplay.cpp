@@ -51,75 +51,84 @@ void					GraphicDisplay::graphCPU(int i)
 	con2 = con2.substr(con2.find_first_of("0123456789"), con1.find("%"));
 	con3 = con3.substr(con3.find_first_of("0123456789"), con1.find("%"));
 
-	float a = stof(con1);
-	float b = stof(con2);
-	float c = stof(con3);
-
-	sf::RectangleShape c1(sf::Vector2f(400 * (a / 100), 50));
-	sf::RectangleShape c2(sf::Vector2f(400 * (b / 100), 50));
-	sf::RectangleShape c3(sf::Vector2f(400 * (c / 100), 50));
+	sf::RectangleShape c1(sf::Vector2f(380 * (stof(con1) / 100), 50));
+	sf::RectangleShape c2(sf::Vector2f(380 * (stof(con2) / 100), 50));
+	sf::RectangleShape c3(sf::Vector2f(380 * (stof(con3) / 100), 50));
 
 	c1.setFillColor(sf::Color::Red);
 	c2.setFillColor(sf::Color::Green);
 	c3.setFillColor(sf::Color::Yellow);
 
-	c1.setPosition(90, this->_size + 20);
-	c2.setPosition(90, this->_size + 90);
-	c3.setPosition(90, this->_size + 160);
+	c1.setPosition(100, this->_size + 30);
+	c2.setPosition(100, this->_size + 100);
+	c3.setPosition(100, this->_size + 170);
 
 	this->_window.draw(c1);
 	this->_window.draw(c2);
 	this->_window.draw(c3);
 
 	t1.setString("User");
-	t1.setPosition(10, this->_size + 20);
+	t1.setPosition(20, this->_size + 30);
 	this->_window.draw(t1);
 
 	t1.setString("Syst");
-	t1.setPosition(10, this->_size + 90);
+	t1.setPosition(20, this->_size + 100);
 	this->_window.draw(t1);
 
 	t1.setString("Idle");
-	t1.setPosition(10, this->_size + 160);
+	t1.setPosition(20, this->_size + 170);
 	this->_window.draw(t1);
-
-	(void)i;
 }
 
 void					GraphicDisplay::renderOutput(void)
 {
 	this->_window.clear(sf::Color::Black);
 
-	sf::RectangleShape r1(sf::Vector2f(600, 70));
-	sf::RectangleShape r2(sf::Vector2f(600, 250));
-	r2.setFillColor(_azure);
-	r1.setPosition(0, 0);
-	r2.setPosition(0, 70);
+	sf::Texture text1;
+	text1.loadFromFile("./img/header.png");
+	text1.setSmooth(true);
+
+	sf::Sprite r1;
+	r1.setTexture(text1);
+
+	sf::Texture text2;
+	text2.loadFromFile("./img/body.png");
+	text2.setSmooth(true);
+
+	sf::Sprite r2;
+	r2.setTexture(text2);
+
+	sf::Texture text3;
+	text3.loadFromFile("./img/title.png");
+	text3.setSmooth(true);
+
+	sf::Sprite r3;
+	r3.setTexture(text3);
+
+	r2.setPosition(0, 60);
 
 	sf::FloatRect tr;
 
 	sf::Text t1;
-	r1.setFillColor(sf::Color::Black);
 	t1.setString(" Ft_Gkrellm ");
 	tr = t1.getLocalBounds();
-	t1.setPosition(125, 0);
-	t1.setCharacterSize(50);
+	t1.setPosition(145, 0);
+	t1.setCharacterSize(40);
 	t1.setFont(this->_courier);
 	t1.setStyle(sf::Text::Bold);
 	t1.setFillColor(sf::Color::White);
-	this->_window.draw(r1);
+	this->_window.draw(r3);
 	this->_window.draw(t1);
 
 	size_t i = 0;
 	size_t x = 0;
 	int	   y = 0;
 	
-	r1.setFillColor(this->_grey);
-	t1.setFillColor(this->_lightblue);
-	r2.setFillColor(this->_slateblue);
 	t1.setFont(this->_courier);
 	while (i < this->_modules.size())
 	{
+		t1.setCharacterSize(50);
+		t1.setFillColor(this->_lightblue);
 		r1.setPosition(0, this->_size);
 		t1.setString(this->_modules.at(i)->getName().c_str());
 		tr = t1.getLocalBounds();
@@ -133,6 +142,7 @@ void					GraphicDisplay::renderOutput(void)
 		this->_window.draw(r2);
 		t1.setCharacterSize(40);
 		y = (125 / this->_modules.at(i)->getOutput().size());
+		t1.setFillColor(sf::Color::Black);
 		if (this->_modules.at(i)->getName() == " CPU USAGE ")
 			graphCPU(i);
 		else
