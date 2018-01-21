@@ -16,11 +16,7 @@
 GraphicDisplay::GraphicDisplay(std::vector<IMonitorModule*> const modules) : IMonitorDisplay(), _modules(modules)
 {
 
-	// this->_mlx = mlx_init();
-	// this->_win = mlx_new_window(this->_mlx, 1000, 1000, (char*)"Kill me please");
-	// this->_img = mlx_new_image(this->_mlx, 1000, 1000);
-	// this->_pix = (int*)mlx_get_data_addr(this->_img,
-	// 	&(this->_bits), &(this->_sline), &(this->_endian));
+
 
 	return ;
 }
@@ -30,18 +26,6 @@ GraphicDisplay::~GraphicDisplay()
 	// endwin();
 	return ;
 }
-
-
-void					*GraphicDisplay::getMlx(void)
-{
-	return (this->_mlx);
-}
-
-void					*GraphicDisplay::getWin(void)
-{
-	return (this->_win);
-}
-		
 
 void					GraphicDisplay::fillSpace(char *str)
 {

@@ -40,6 +40,8 @@
 # include <sys/types.h>
 # include <sys/sysctl.h>
 
+# include <SFML/Graphics.hpp>
+
 # include <IMonitorModule.hpp>
 # include <IMonitorDisplay.hpp>
 # include <HostNameModule.hpp>

@@ -27,9 +27,6 @@ class GraphicDisplay : public IMonitorDisplay
 		void		refreshOutput(void);
 		void		fillSpace(char *str);
 
-		void		*getMlx(void);
-		void		*getWin(void);
-		
 	private:
 
 		GraphicDisplay(void);
@@ -37,15 +34,6 @@ class GraphicDisplay : public IMonitorDisplay
 		GraphicDisplay	&operator=(GraphicDisplay const &r);
 
 		std::vector<IMonitorModule*>	_modules;
-
-		void		*_mlx;
-		void		*_win;
-		void		*_img;
-		int			*_pix;
-		int			_bits;
-		int			_sline;
-		int			_endian;
-	
 };
 
 #endif

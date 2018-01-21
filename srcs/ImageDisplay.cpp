@@ -16,6 +16,13 @@ void	image_display(std::vector<std::string> flags)
 {
 	std::vector<IMonitorModule*> 	modules;
 	GraphicDisplay test(modules);
+
+	sf::RenderWindow	window(sf::VideoMode(800, 600), "Kill me please");
+
+	while(window.isOpen())
+	{
+		
+	}
 	(void)flags;
 
 }
